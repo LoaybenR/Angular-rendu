@@ -1,0 +1,23 @@
+<input type="text" class="form-control mb-3" placeholder="Search conferences..." [(ngModel)]="searchTitle" >
+
+<div class="container my-5">
+  <h2 class="text-center mb-4">Liste des conférences</h2>
+
+  <div class="row g-4">
+
+    @for ( conf of searchConferences(); track conf.title) {
+    <div class="col-md-6 col-lg-4">
+      <div class="card h-100 shadow-sm">
+        <img [src]="conf.picture" [alt]="conf.title" width="200" height="200" center>
+        <div class="card-body">
+          <h5 class="card-title"><strong>Title : </strong>{{conf.title }}</h5>
+          <p class="card-text mb-1"><strong>date : </strong>{{conf.date}}</p>
+          <p class="card-text mb-1"><strong>Available Seats : </strong>{{conf.nbrMax-conf.nbrReservation}}</p>
+          <p class="card-text"><button [disabled]="conf.nbrMax-conf.nbrReservation === 0" class="btn btn-primary" (click)="participate(conf)">participate</button></p>
+        </div>
+        
+      </div>
+    </div>
+}
+  </div>
+</div>
